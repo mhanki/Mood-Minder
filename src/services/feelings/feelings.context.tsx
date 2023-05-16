@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect, ReactNode } from "react";
-import { feelingsRequest } from "./feelings.service";
+import { getFeelings } from "./feelings.service";
 
 export type Feeling = {
   ID: number,
@@ -9,43 +9,31 @@ export type Feeling = {
 
 interface FeelingsContextType {
   feelings: Feeling[] | undefined,
-  error: any,
-  isLoading: boolean
+  error: any
 }
 
-export const FeelingsContext = createContext<FeelingsContextType>({feelings: undefined, error: null, isLoading: true});
+export const FeelingsContext = createContext<FeelingsContextType>(
+  { feelings: undefined, error: null }
+);
 
 export const FeelingsContextProvider = ({ children }: { children: ReactNode }) => {
-  const [feelings, setFeelings] = useState<Feeling[]>();
+  const [feelings, setFeelings] = useState<Feeling[]>([]);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const retrieveFeelings = () => {
-    setIsLoading(true);
-    setFeelings([]);
-
-    setTimeout(() => {
-      feelingsRequest()
-        .then((results) => {
-          setIsLoading(false);
-          setFeelings(results);
-        })
-        .catch((err) => {
-          setIsLoading(false);
-          setError(err);
-        });
-    }, 1000);
-  };
 
   useEffect(() => {
-    retrieveFeelings();
+    getFeelings()
+      .then((results) => {
+        setFeelings(results);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, []);
 
   return (
     <FeelingsContext.Provider
       value={{
         feelings,
-        isLoading,
         error,
       }}
     >

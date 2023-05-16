@@ -18,7 +18,7 @@ export const MoodScale = ({ feelings, envs }: { feelings: Feeling[], envs: Env[]
   const [selectedEnvs, setSelectedEnvs] = useState([]);
 
   useEffect(() => {
-    setFeeling(feelings[2]);
+    setFeeling(feelings[5]);
   }, [feelings]);
 
   if(!feeling) {
@@ -34,7 +34,7 @@ export const MoodScale = ({ feelings, envs }: { feelings: Feeling[], envs: Env[]
         value={feeling.rank}
         onValueChange={(value) => setFeeling(feelings.filter(feeling => value[0] === feeling.rank)[0])}
         minimumValue={1}
-        maximumValue={5}
+        maximumValue={feelings.length}
         step={1}
         trackClickable={true}
       />
