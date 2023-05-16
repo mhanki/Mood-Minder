@@ -5,20 +5,24 @@ import { JournalScreen } from "../features/journal/screens/JournalScreen";
 import { EnvironmentsScreen } from "../features/environments/screens/EnvironmentsScreen";
 import { colors } from "../theme/colors";
 import { space } from "../theme/spacing";
+import { ParamListBase, RouteProp } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
-const TAB_ICON = {
-  Log: "happy-outline", // analytics
-  Journal: "journal-outline",
-  Environments: "pie-chart-outline",
+const TAB_ICON: { [key: string]: keyof typeof Ionicons.glyphMap; } = {
+  "Log": "happy-outline",
+  "Journal": "journal-outline",
+  "Environments": "pie-chart-outline",
 };
 
-const createScreenOptions = ({ route }) => {
+const createScreenOptions = ({ route }: { route: RouteProp<ParamListBase, string> }) => {
   const iconName = TAB_ICON[route.name];
 
   return {
-    tabBarIcon: ({ size, color }) => (
+    tabBarIcon: ({ size, color }: {
+      size: any;
+      color: any;
+  }) => (
       <Ionicons 
         name={iconName} 
         size={size} 
@@ -33,10 +37,10 @@ const createScreenOptions = ({ route }) => {
       height: 60
     },
     tabBarItemStyle: { marginBottom: space.small},
-    headerStyle: { 
+    /* headerStyle: { 
       backgroundColor: colors.bg.secondary,
     }, 
-    headerTitleStyle: { color: colors.text.inverse }
+    headerTitleStyle: { color: colors.text.inverse } */
   };
 };
 

@@ -1,6 +1,7 @@
-import styled, { useTheme } from 'styled-components/native';
+import { ReactNode } from 'react';
+import styled, { DefaultTheme, useTheme } from 'styled-components/native';
 
-const defaultTextStyles = (theme) => `
+const defaultTextStyles = (theme: DefaultTheme) => `
   font-weight: ${theme.fontWeights.regular};
   color: ${theme.colors.text.primary};
   flex-wrap: wrap;
@@ -8,24 +9,24 @@ const defaultTextStyles = (theme) => `
   margin-bottom: 0px;
 `;
 
-const body = (theme) => `
+const body = (theme: DefaultTheme) => `
   font-size: ${theme.fontSizes.body};
 `;
 
-const title = (theme) => `
+const title = (theme: DefaultTheme) => `
   font-size: ${theme.fontSizes.title};
 `;
 
-const error = (theme) => `
+const error = (theme: DefaultTheme) => `
   color: ${theme.colors.text.error};
 `;
 
-const caption = (theme) => `
+const caption = (theme: DefaultTheme) => `
   font-size: ${theme.fontSizes.caption};
   font-weight: ${theme.fontWeights.bold};
 `;
 
-const label = (theme) => `
+const label = (theme: DefaultTheme) => `
   font-size: ${theme.fontSizes.label};
   font-weight: ${theme.fontWeights.medium};
 `;
@@ -40,15 +41,18 @@ const VARIANT = {
 
 const TextView = styled.Text`
   ${({ theme }) => defaultTextStyles(theme)}
-  ${({ variant, theme }) => VARIANT[variant](theme)}
+  ${({ variant, theme }: { variant: keyof typeof VARIANT, theme: DefaultTheme }) => VARIANT[variant](theme)}
 `;
 
-export const Text = ({variant, children, style={}}) => {
+export const Text = ({variant, children, style}: {
+  variant: keyof typeof VARIANT,
+  children?: ReactNode,
+  style?: {}
+}) => {
   const theme = useTheme();
-
   return <TextView variant={variant} theme={theme} style={style}>{children}</TextView>
 }
 
 Text.defaultProps = {
-  variant: "body",
+  variant: "body"
 };
