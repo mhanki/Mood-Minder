@@ -1,19 +1,7 @@
-import { Env } from './envs.context'
+import { Env } from './envs.context';
+import { API_URL } from '../../../env';
 
-export const envsRequest = (): Promise<Env[]> => {
-  return new Promise((resolve, reject) => {
-    const mock: Env[] = [
-      { ID: 1, name: 'at work' },
-      { ID: 2, name: 'outdoors' },
-      { ID: 3, name: 'exercising' },
-      { ID: 4, name: 'downtime' },
-      { ID: 5, name: 'with family' }
-    ];
-
-    if (!mock) {
-      reject("not found");
-    }
-
-    resolve(mock);
-  });
-};
+export const getEnvs = async (): Promise<Env[]> => {
+  const res = await fetch(`${API_URL}/environments`);
+  return res.json();
+}

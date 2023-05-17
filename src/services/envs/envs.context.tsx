@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect, ReactNode } from "react";
-import { envsRequest } from "./envs.service";
+import { getEnvs } from "./envs.service";
 
 export type Env = {
   ID: number,
@@ -8,44 +8,30 @@ export type Env = {
 
 interface EnvsContextType {
   envs: Env[] | undefined,
-  error: any,
-  isLoading: boolean
+  error: any
 }
 
-export const EnvsContext = createContext<EnvsContextType>({envs: undefined, error: null, isLoading: true});
+export const EnvsContext = createContext<EnvsContextType>({ envs: undefined, error: null });
 
 export const EnvsContextProvider = ({ children }: { children: ReactNode }) => {
   const [envs, setEnvs] = useState<Env[]>();
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const retrieveEnvs = () => {
-    setIsLoading(true);
-    setEnvs([]);
-
-    setTimeout(() => {
-      envsRequest()
-        .then((results) => {
-          setIsLoading(false);
-          setEnvs(results);
-        })
-        .catch((err) => {
-          setIsLoading(false);
-          setError(err);
-        });
-    }, 1000);
-  };
 
   useEffect(() => {
-    retrieveEnvs();
+    getEnvs()
+      .then((results) => {
+        setEnvs(results);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, []);
 
   return (
     <EnvsContext.Provider
       value={{
         envs,
-        isLoading,
-        error,
+        error
       }}
     >
       {children}
