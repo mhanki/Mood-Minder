@@ -3,12 +3,10 @@ import { ActivityIndicator } from 'react-native-paper';
 import { SafeArea } from "../../../components/SafeArea";
 import { MoodScale } from "../components/MoodScale";
 import { MoodGraph } from "../components/MoodGraph";
-import { FeelingsContext } from '../../../services/feelings/feelings.context';
-import { EnvsContext } from '../../../services/envs/envs.context';
+import { LogsContext } from '../../../services/logs/logs.context';
 
 export const MoodLogScreen = () => {
-  const { feelings } = useContext(FeelingsContext);
-  const { envs } = useContext(EnvsContext);
+  const { feelings, envs } = useContext(LogsContext);
 
   if(!feelings || !envs){
     return <ActivityIndicator />

@@ -3,8 +3,8 @@ import { Text } from '../../../components/Text';
 import styled from 'styled-components/native';
 import { Slider } from '@miblanchard/react-native-slider';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { Feeling } from '../../../services/feelings/feelings.context';
-import { Env } from '../../../services/envs/envs.context';
+import { Feeling, Env } from '../../../services/logs/logs.context';
+import { addLog } from '../../../services/logs/logs.service';
 import { ActivityIndicator } from 'react-native-paper';
 import { Button } from 'react-native-paper';
 
@@ -23,7 +23,17 @@ export const MoodScale = ({ feelings, envs }: { feelings: Feeling[], envs: Env[]
 
   if(!feeling) {
     return <ActivityIndicator animating={true} />
-  }
+  };
+
+  const handleLog = async () => {
+    try {
+      await addLog({feeling: feeling.ID, environment: selectedEnvs[0]});
+      setFeeling(feelings[5]);
+      setSelectedEnvs([]);
+    } catch (error) {
+        console.log(error);
+    }
+  };
 
   return (
     <ScaleContainer>
@@ -53,7 +63,7 @@ export const MoodScale = ({ feelings, envs }: { feelings: Feeling[], envs: Env[]
       <Button 
         mode='contained' 
         style={{ zIndex: -99 }}
-        onPress={() => console.log(feeling, selectedEnvs)}
+        onPress={handleLog}
       >
         Log it
       </Button>
