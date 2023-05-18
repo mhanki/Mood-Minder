@@ -1,6 +1,7 @@
-import { Feeling, Env } from './logs.context'
+import { Feeling, Env, Log } from './logs.context'
 import { API_URL } from '../../../env';
 import { fetchWithBearer } from '../auth/auth.service';
+import camelize from 'camelize-ts';
 
 export const getFeelings = async (): Promise<Feeling[]> => {
   const res = await fetch(`${API_URL}/feelings`);
@@ -20,4 +21,10 @@ export const addLog = async (log: { feeling: number, environment: number }) => {
   });
 
   return res.json();
+};
+
+export const getLogs = async () => {
+  const res = await fetchWithBearer(`${API_URL}/logs`);
+  const logs = await res.json();
+  return logs.map((log: Log) => camelize<Log, false>(log));
 };

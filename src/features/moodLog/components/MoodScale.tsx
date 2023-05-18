@@ -3,7 +3,7 @@ import { Text } from '../../../components/Text';
 import styled from 'styled-components/native';
 import { Slider } from '@miblanchard/react-native-slider';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { Feeling, Env } from '../../../services/logs/logs.context';
+import { Feeling, Env, Log } from '../../../services/logs/logs.context';
 import { addLog } from '../../../services/logs/logs.service';
 import { ActivityIndicator } from 'react-native-paper';
 import { Button } from 'react-native-paper';
@@ -12,7 +12,7 @@ const ScaleContainer = styled.View`
   padding: ${({theme}) => theme.space.medium}px;
 `;
 
-export const MoodScale = ({ feelings, envs }: { feelings: Feeling[], envs: Env[]}) => {
+export const MoodScale = ({ feelings, envs, updateLogs }: { feelings: Feeling[], envs: Env[], updateLogs: any}) => {
   const [feeling, setFeeling] = useState<Feeling>();
   const [openDropdown, setopenDropdown] = useState(false);
   const [selectedEnvs, setSelectedEnvs] = useState([]);
@@ -27,7 +27,9 @@ export const MoodScale = ({ feelings, envs }: { feelings: Feeling[], envs: Env[]
 
   const handleLog = async () => {
     try {
-      await addLog({feeling: feeling.ID, environment: selectedEnvs[0]});
+      const newLog = { feeling: feeling.ID, environment: selectedEnvs[0] }
+      await addLog(newLog);
+      updateLogs();
       setFeeling(feelings[5]);
       setSelectedEnvs([]);
     } catch (error) {
