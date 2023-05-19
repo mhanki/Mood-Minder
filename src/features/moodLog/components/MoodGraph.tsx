@@ -8,7 +8,7 @@ import { Dimensions } from "react-native";
 const screenWidth = Dimensions.get("window").width;
 
 const GraphContainer = styled.View`
-  padding: ${({theme}) => theme.space.medium}px;
+  padding-left: ${({theme}) => theme.space.medium}px;
   z-Index: -1;
 `;
 
@@ -35,7 +35,7 @@ export const sortByDate = (data: any[], sortOrder?: string): void => {
 export const MoodGraph = ({ logs, feelings }: { logs: Log[], feelings: Feeling[] }) => {
   sortByDate(logs);
 
-  const latestLogs = logs.slice(Math.max(logs.length - 5, 0));
+  const latestLogs = logs.slice(Math.max(logs.length - 10, 0));
 
   const data = {
     labels: latestLogs.map(log => formatDate(log.createdAt, { month: "short", day: "2-digit" })),
@@ -74,11 +74,12 @@ export const MoodGraph = ({ logs, feelings }: { logs: Log[], feelings: Feeling[]
 
       <LineChart
         data={data}
-        width={screenWidth}
-        height={220}
+        width={screenWidth-35}
+        height={290}
         chartConfig={chartConfig}
         formatYLabel={(): string => yLabelIterator.next().value!}
         segments={10}
+        verticalLabelRotation={60}
       />
     </GraphContainer>
   );

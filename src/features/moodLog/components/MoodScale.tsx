@@ -39,8 +39,8 @@ export const MoodScale = ({ feelings, envs, updateLogs }: { feelings: Feeling[],
 
   return (
     <ScaleContainer>
-      <Text variant={"title"}>Mood Scale</Text>
-      <Text>Mood: {feeling.name}</Text>
+      <Text variant={"body"}>Right now I'm feeling:</Text>
+      <Text>{feeling.name.toUpperCase()}</Text>
       
       <Slider
         value={feeling.rank}
@@ -64,7 +64,7 @@ export const MoodScale = ({ feelings, envs, updateLogs }: { feelings: Feeling[],
 
       <Button 
         mode='contained' 
-        style={{ zIndex: -99 }}
+        style={{ zIndex: -99, margin: 10 }}
         onPress={handleLog}
       >
         Log it
