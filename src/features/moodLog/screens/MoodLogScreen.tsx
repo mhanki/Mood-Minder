@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { ScrollView } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { SafeArea } from "../../../components/SafeArea";
 import { MoodScale } from "../components/MoodScale";

@@ -72,7 +72,7 @@ export const MoodGraph = ({ logs, feelings }: { logs: Log[], feelings: Feeling[]
     <GraphContainer>
       <Text variant={"title"}>Mood Graph</Text>
 
-      <LineChart
+      {/* <LineChart
         data={data}
         width={screenWidth-35}
         height={290}
@@ -80,7 +80,7 @@ export const MoodGraph = ({ logs, feelings }: { logs: Log[], feelings: Feeling[]
         formatYLabel={(): string => yLabelIterator.next().value!}
         segments={10}
         verticalLabelRotation={60}
-      />
+      /> */}
     </GraphContainer>
   );
 };
