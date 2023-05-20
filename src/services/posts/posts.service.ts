@@ -1,12 +1,19 @@
 import { Post } from './posts.context'
 import { API_URL } from '../../../env';
 import { fetchWithBearer } from '../auth/auth.service';
-import camelize from 'camelize-ts';
 
 export const getPosts = async () => {
   const res = await fetchWithBearer(`${API_URL}/posts`);
   const posts = await res.json();
-  return posts.map((post: Post) => camelize<Post, false>(post));
+
+  return posts.map((post: any): Post => ({
+    ID: post.ID,
+    content: post.content,
+    isPrivate: post.is_private,
+    createdAt: post.created_at,
+    updatedAt: post.updated_at,
+    userId: post.user_id
+  }));
 };
 
 /* const getOne = async (id: string) => {
