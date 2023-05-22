@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { 
   PaddedSafeArea, 
   RowContainer, 
@@ -7,6 +7,7 @@ import {
   PostContainer 
 } from './JournalScreen.styles';
 import { Text } from '../../../components/Text';
+import { TouchableOpacity, View } from 'react-native';
 import { ActivityIndicator, Button } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import { PostsContext } from '../../../services/posts/posts.context';
@@ -15,26 +16,11 @@ const formatDate = (date: string, options?: Intl.DateTimeFormatOptions | undefin
   new Date(date)
     .toLocaleString('en-us', options);
 
-export const JournalScreen = () => {
-  const { posts } = useContext(PostsContext);
+export const JournalScreen = ({ navigation }:  { navigation: any }) => {
+  const { posts, displayedPost, browsePosts } = useContext(PostsContext);
 
-  if(!posts) {
+  if(!posts || !displayedPost) {
     return <ActivityIndicator />
-  };
-
-  const [displayedPost, setDisplayedPost] = useState(posts[posts.length - 1]);
-
-  console.log(posts)
-
-  const browsePosts = (direction: string) => {
-    const i = posts.findIndex((post) => post.ID === displayedPost?.ID);
-    const post = direction === 'prev'
-    ? posts[i-1]
-    : posts[i+1]
-  
-    if(post){
-      setDisplayedPost(post)
-    };
   };
 
   const getIcon = (): keyof typeof Ionicons.glyphMap => displayedPost.isPrivate ? 'lock-closed-outline' : 'lock-open-outline'
@@ -62,12 +48,27 @@ export const JournalScreen = () => {
             <Text variant="caption" style={{ marginLeft: 10 }}>
               {formatDate(displayedPost.createdAt, { hour: '2-digit', minute: '2-digit' })}
             </Text>
+            <TouchableOpacity style={{ marginLeft: 'auto' }}>
+              <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <Ionicons 
+                  name={"create-outline"} 
+                  size={15} 
+                />
+                <Text>Edit</Text>
+              </View>
+            </TouchableOpacity>
           </RowContainer>
           <Text>{displayedPost.content}</Text>
         </PostContainer>
       </PostDisplayCard>
 
-      <Button mode={'contained'} style={{ marginTop: 20 }}>New Entry</Button>
+      <Button 
+        mode={'contained'} 
+        style={{ marginTop: 20 }}
+        onPress={() => navigation.navigate("Post Form")}
+      >
+        New Entry
+      </Button>
     </PaddedSafeArea>
   );
 };

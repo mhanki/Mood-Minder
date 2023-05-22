@@ -9,6 +9,7 @@ export const PaddedSafeArea = styled(SafeArea)`
 export const RowContainer = styled.View`
   flex-direction: row;
   padding-bottom: ${({theme}) => theme.space.medium}px;
+  align-items: center;
 `;
 
 export const TitleContainer = styled.View`

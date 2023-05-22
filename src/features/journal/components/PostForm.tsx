@@ -1,0 +1,42 @@
+import { useState, useContext } from 'react';
+import { TextInput, Button, Checkbox } from 'react-native-paper';
+import { SafeArea } from '../../../components/SafeArea';
+import { PostsContext } from '../../../services/posts/posts.context';
+
+export const PostForm = ({ navigation } :  { navigation: any }) => {
+  const [text, setText] = useState('');
+  const [isPrivate, setIsPrivate] = useState(true);
+  const { addPost } = useContext(PostsContext);
+
+  return (
+    <SafeArea>
+      <TextInput
+        editable
+        multiline
+        numberOfLines={20}
+        onChangeText={text => setText(text)}
+        value={text}
+        style={{ margin: 16 }}
+        placeholder={"How are you doing today?"}
+      />
+      <Checkbox.Item
+        status={isPrivate ? 'unchecked' : 'checked'}
+        onPress={() => setIsPrivate(!isPrivate)}
+        label='Make Public'
+        style={{ paddingHorizontal: 16, paddingVertical: 0, justifyContent: 'flex-start'}}
+        labelStyle={{ flexShrink: 0, flexGrow: 0 }}
+        position='leading'
+      />
+      <Button
+        mode={'contained'} 
+        style={{ marginTop: 10 }}
+        onPress={() => { 
+          addPost({ content: text, isPrivate }) 
+          navigation.navigate("Post Display")
+        }}
+      >
+        Add Post
+      </Button>
+    </SafeArea>
+  )
+}

@@ -16,19 +16,13 @@ export const getPosts = async () => {
   }));
 };
 
-/* const getOne = async (id: string) => {
-  const res = await fetchWithBearer(`${baseUrl}/${id}`);
-  const data = await res.json();
-  return data.post;
-};
-
-const createOne = async (post: {content: string, isPrivate: boolean}) => {
+export const createOne = async (post: {content: string, isPrivate: boolean}) => {
   const newPost = {
     content: post.content,
     isPrivate: post.isPrivate ? 1 : 0
   };
 
-  const res = await fetchWithBearer(baseUrl, {
+  const res = await fetchWithBearer(`${API_URL}/posts`, {
     method: 'POST',
     body: JSON.stringify(newPost),
     headers: {'Content-Type': 'application/json'}
@@ -37,20 +31,28 @@ const createOne = async (post: {content: string, isPrivate: boolean}) => {
   return res.json();
 };
 
-const updateOne = async (post: {ID: number, content: string, isPrivate: boolean}) => {
+export const updateOne = async (post: { ID: number, content: string, isPrivate: boolean }) => {
   const updatedPost = {
     content: post.content,
     isPrivate: post.isPrivate ? 1 : 0
   };
 
-  const res = await fetchWithBearer(`${baseUrl}/${post.ID}`, {
+  const res = await fetchWithBearer(`${API_URL}/posts`, {
     method: 'PUT',
     body: JSON.stringify(updatedPost),
     headers: {'Content-Type': 'application/json'}
   });
 
   return res.json();
-}
+};
+
+/* const getOne = async (id: string) => {
+  const res = await fetchWithBearer(`${baseUrl}/${id}`);
+  const data = await res.json();
+  return data.post;
+};
+
+
 
 const postsService = { getAll, getOne, createOne, updateOne };
 export default postsService; */
