@@ -37,7 +37,7 @@ export const updateOne = async (post: { ID: number, content: string, isPrivate: 
     isPrivate: post.isPrivate ? 1 : 0
   };
 
-  const res = await fetchWithBearer(`${API_URL}/posts`, {
+  const res = await fetchWithBearer(`${API_URL}/posts/${post.ID}`, {
     method: 'PUT',
     body: JSON.stringify(updatedPost),
     headers: {'Content-Type': 'application/json'}

@@ -6,6 +6,8 @@ import { colors } from "../theme/colors";
 import { space } from "../theme/spacing";
 import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { PostsNavigator } from "./PostsNavigator";
+import { PostsContextProvider } from '../services/posts/posts.context';
+import { LogsContextProvider } from '../services/logs/logs.context';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,10 +44,14 @@ const createScreenOptions = ({ route }: { route: RouteProp<ParamListBase, string
 
 export const AppNavigator = () => {
   return(
-    <Tab.Navigator screenOptions={createScreenOptions} >
-      <Tab.Screen name="Log" component={MoodLogScreen} />
-      <Tab.Screen name="Journal" component={PostsNavigator} />
-      <Tab.Screen name="Environments" component={EnvironmentsScreen} />
-    </Tab.Navigator>
+    <LogsContextProvider>
+      <PostsContextProvider>
+        <Tab.Navigator screenOptions={createScreenOptions} >
+          <Tab.Screen name="Log" component={MoodLogScreen} />
+          <Tab.Screen name="Journal" component={PostsNavigator} />
+          <Tab.Screen name="Environments" component={EnvironmentsScreen} />
+        </Tab.Navigator>
+      </PostsContextProvider>
+    </LogsContextProvider>
   )
 };

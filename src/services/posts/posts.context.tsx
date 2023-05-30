@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect, ReactNode } from "react";
-import { getPosts, createOne } from "./posts.service";
+import { getPosts, createOne, updateOne } from "./posts.service";
 
 export type Post = {
   ID: number,
@@ -14,14 +14,16 @@ interface PostsContextType {
   posts: Post[] | undefined,
   displayedPost: Post | undefined,
   addPost: (post: any | undefined) => void,
-  browsePosts: (direction: string) => void
-}
+  browsePosts: (direction: string) => void,
+  updatePost: (post: any | undefined) => void
+};
 
 export const PostsContext = createContext<PostsContextType>({
   posts: undefined,
   displayedPost: undefined,
   addPost: () => {},
-  browsePosts: () => {}
+  browsePosts: () => {},
+  updatePost: () => {}
 });
 
 export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
@@ -41,9 +43,13 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
   const addPost = (post: { content: string, isPrivate: boolean }) => {
     createOne(post)
       .then(() => {
-        retrievePosts();
+        getPosts()
+          .then((results) => {
+            setDisplayedPost(results[results.length - 1]);
+            setPosts(results);
+          })
       })
-      .catch((err) => { console.log(err)})
+      .catch((err) => { console.log(err) });
   };
 
   const browsePosts = (direction: string) => {
@@ -58,13 +64,26 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
     };
   };
 
+  const updatePost = (post: { ID: number, content: string, isPrivate: boolean }) => {
+    updateOne(post)
+      .then(() => {
+        retrievePosts();
+
+        const updated: Post = {
+          ...displayedPost!, 
+          content: post.content, 
+          isPrivate: post.isPrivate
+        };
+
+        setDisplayedPost(updated);
+      })
+      .catch((err) => { console.log(err) });
+  };
+ 
   useEffect(() => {
     retrievePosts();
-  }, []);
-
-  useEffect(() => {
     setDisplayedPost(posts[posts.length - 1]);
-  }, [posts]);
+  }, []);
 
   return (
     <PostsContext.Provider
@@ -72,7 +91,8 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
         posts,
         displayedPost,
         addPost,
-        browsePosts
+        browsePosts,
+        updatePost
       }}
     >
       {children}

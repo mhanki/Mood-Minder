@@ -11,10 +11,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { ActivityIndicator, Button } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import { PostsContext } from '../../../services/posts/posts.context';
-
-const formatDate = (date: string, options?: Intl.DateTimeFormatOptions | undefined) => 
-  new Date(date)
-    .toLocaleString('en-us', options);
+import { formatDate } from '../../../utils/helpers';
 
 export const JournalScreen = ({ navigation }:  { navigation: any }) => {
   const { posts, displayedPost, browsePosts } = useContext(PostsContext);
@@ -32,7 +29,7 @@ export const JournalScreen = ({ navigation }:  { navigation: any }) => {
           <Ionicons name={"chevron-back-outline"} size={25}/>
         </Button>
         <Text variant="title">
-          {formatDate(displayedPost.createdAt, { weekday: "short" ,month: "short", day: "2-digit", year: "numeric" })}
+          {formatDate(displayedPost.createdAt, { weekday: "short", month: "short", day: "2-digit", year: "numeric" })}
         </Text>
         <Button onPress={() => browsePosts("next")}>
           <Ionicons name={"chevron-forward-outline"} size={25}/>
@@ -47,8 +44,12 @@ export const JournalScreen = ({ navigation }:  { navigation: any }) => {
             />
             <Text variant="caption" style={{ marginLeft: 10 }}>
               {formatDate(displayedPost.createdAt, { hour: '2-digit', minute: '2-digit' })}
+              {displayedPost.updatedAt ? ' (edited)' : null}
             </Text>
-            <TouchableOpacity style={{ marginLeft: 'auto' }}>
+            <TouchableOpacity 
+              style={{ marginLeft: 'auto' }}
+              onPress={() => navigation.navigate("Post Edit", {post: displayedPost})}
+            >
               <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons 
                   name={"create-outline"} 
