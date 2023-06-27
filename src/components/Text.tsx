@@ -17,6 +17,10 @@ const title = (theme: DefaultTheme) => `
   font-size: ${theme.fontSizes.title};
 `;
 
+const heading = (theme: DefaultTheme) => `
+  font-size: ${theme.fontSizes.h5};
+`;
+
 const error = (theme: DefaultTheme) => `
   color: ${theme.colors.text.error};
 `;
@@ -34,6 +38,7 @@ const label = (theme: DefaultTheme) => `
 const VARIANT = {
   body,
   title,
+  heading,
   label,
   caption,
   error,
