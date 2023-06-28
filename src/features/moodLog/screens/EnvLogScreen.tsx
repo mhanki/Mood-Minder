@@ -24,7 +24,7 @@ export const EnvLogScreen = ({ navigation, route }: any) => {
   const { envs } = useContext(LogsContext);
   const [selected, setSelected] = useState(0);
 
-  if(!envs) {
+  if (!envs) {
     return <ActivityIndicator />
   };
 
@@ -35,13 +35,13 @@ export const EnvLogScreen = ({ navigation, route }: any) => {
   return (
     <SafeArea>
       <Text variant='heading' style={{ textAlign: 'center' }}>Where are you?</Text>
-      <Text style={{ textAlign: 'center', marginBottom: 16 }}>Select one or more of the below</Text>
+      <Text style={{ textAlign: 'center', marginBottom: 16 }}>Select one of the below</Text>
       <ScrollView>
         <CardsContainer>
-          {envs.map((env) => 
-            <ChoiceCard 
-              selected={selected} 
-              select={select} 
+          {envs.map((env) =>
+            <ChoiceCard
+              selected={selected}
+              select={select}
               id={env.ID}
               text={env.name}
               key={env.ID}
@@ -50,10 +50,10 @@ export const EnvLogScreen = ({ navigation, route }: any) => {
           )}
         </CardsContainer>
       </ScrollView>
-      <LogButton 
+      <LogButton
         mode='contained'
         onPress={() => {
-          const log: {feeling: number, environment: number} = {
+          const log: { feeling: number, environment: number } = {
             feeling: route.params.feeling,
             environment: selected
           };

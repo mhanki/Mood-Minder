@@ -9,22 +9,22 @@ import { ChoiceCard } from '../components/ChoiceCard';
 import { CardsContainer, LogButton } from './MoodLogScreen.styles';
 
 const getEmoticon = (id: number): keyof typeof MaterialCommunityIcons.glyphMap => {
-  if(id < 5) {
+  if (id < 5) {
     return "emoticon-sad";
-  } else if(id == 5) {
+  } else if (id == 5) {
     return "emoticon-neutral";
-  } else if(id < 8) {
+  } else if (id < 8) {
     return "emoticon-happy";
   } else {
     return "emoticon";
   };
 };
 
-export const MoodLogScreen = ({ navigation }: { navigation: any}) => {
+export const MoodLogScreen = ({ navigation }: { navigation: any }) => {
   const { feelings } = useContext(LogsContext);
   const [selected, setSelected] = useState(0);
 
-  if(!feelings) {
+  if (!feelings) {
     return <ActivityIndicator />
   };
 
@@ -34,14 +34,14 @@ export const MoodLogScreen = ({ navigation }: { navigation: any}) => {
 
   return (
     <SafeArea>
-      <Text variant='heading' style={{ textAlign: 'center' }}>How do you feel?</Text>
+      <Text variant='heading' style={{ textAlign: 'center' }}>How are you feeling?</Text>
       <Text style={{ textAlign: 'center', marginBottom: 16 }}>Select one of the below</Text>
       <ScrollView>
         <CardsContainer>
-          {feelings.sort((a, b) => b.ID - a.ID).map((feeling) => 
-            <ChoiceCard 
-              selected={selected} 
-              select={select} 
+          {feelings.sort((a, b) => b.ID - a.ID).map((feeling) =>
+            <ChoiceCard
+              selected={selected}
+              select={select}
               id={feeling.ID}
               text={feeling.name}
               key={feeling.ID}
@@ -50,8 +50,8 @@ export const MoodLogScreen = ({ navigation }: { navigation: any}) => {
           )}
         </CardsContainer>
       </ScrollView>
-      <LogButton 
-        mode='contained' 
+      <LogButton
+        mode='contained'
         onPress={() => { navigation.navigate("Env", { feeling: selected }) }}
       >
         Next

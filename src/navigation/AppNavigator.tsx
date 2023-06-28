@@ -1,3 +1,4 @@
+import { StatusBar } from 'react-native';
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
 import { PostsContextProvider } from '../services/posts/posts.context';
 import { LogsContextProvider } from '../services/logs/logs.context';
@@ -15,6 +16,7 @@ export const AppNavigator = () => {
   return(
     <LogsContextProvider>
       <PostsContextProvider>
+        <StatusBar backgroundColor={colors.bg.primary} barStyle="light-content" />
         <Stack.Navigator screenOptions={{ 
           ...TransitionPresets.SlideFromRightIOS,
           headerStyle: { backgroundColor: colors.bg.primary },

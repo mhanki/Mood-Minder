@@ -12,47 +12,51 @@ export const HomeScreen = ({ navigation }: any) => {
         <Text variant="title">What do you want to do?</Text>
       </Header>
       <NavOptionsContainer>
-        <TouchableOpacity onPress={() => { navigation.navigate("Log")}}>
+        <TouchableOpacity onPress={() => { navigation.navigate("Log") }}>
           <Card>
-            <Ionicons 
-              name={"happy-outline"} 
-              size={50} 
-              color={"white"} 
+            <Ionicons
+              name={"happy-outline"}
+              size={50}
+              color={"white"}
+              marginBottom={5}
             />
-            <Text>Mood Log</Text>
+            <Text>Log Mood</Text>
           </Card>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { navigation.navigate("Journal")}}>
+        <TouchableOpacity onPress={() => { navigation.navigate("Journal") }}>
           <Card>
-            <Ionicons 
-              name={"journal-outline"} 
-              size={50} 
-              color={"white"} 
+            <Ionicons
+              name={"journal-outline"}
+              size={50}
+              color={"white"}
+              marginBottom={5}
             />
             <Text>Journal</Text>
           </Card>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { navigation.navigate("Graph")}}>
+        <TouchableOpacity onPress={() => { navigation.navigate("Graph") }}>
           <Card>
-            <Ionicons 
-              name={"analytics-outline"} 
-              size={50} 
-              color={"white"} 
+            <Ionicons
+              name={"analytics-outline"}
+              size={50}
+              color={"white"}
+              marginBottom={5}
             />
-            <Text>Mood Graph</Text>
+            <Text>View Graph</Text>
           </Card>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { navigation.navigate("Environments")}}>
+        <TouchableOpacity onPress={() => { navigation.navigate("Environments") }}>
           <Card>
-            <Ionicons 
-              name={"pie-chart-outline"} 
-              size={50} 
-              color={"white"} 
+            <Ionicons
+              name={"pie-chart-outline"}
+              size={50}
+              color={"white"}
+              marginBottom={5}
             />
-            <Text>Statistics</Text>
+            <Text>See Statistics</Text>
           </Card>
         </TouchableOpacity>
       </NavOptionsContainer>
