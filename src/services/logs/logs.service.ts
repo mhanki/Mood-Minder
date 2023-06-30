@@ -13,7 +13,7 @@ export const getEnvs = async (): Promise<Env[]> => {
   return res.json();
 };
 
-export const addLog = async (log: { feeling: number, environment: number }) => {
+export const createOne = async (log: { feeling: number, environment: number }) => {
   const res = await fetchWithBearer(`${API_URL}/logs`, {
     method: 'POST',
     body: JSON.stringify(log),
@@ -23,7 +23,7 @@ export const addLog = async (log: { feeling: number, environment: number }) => {
   return res.json();
 };
 
-export const getLogs = async () => {
+export const getAll = async () => {
   const res = await fetchWithBearer(`${API_URL}/logs`);
   const logs = await res.json();
   return logs.map((log: Log) => camelize<Log, false>(log));

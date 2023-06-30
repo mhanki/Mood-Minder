@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect, ReactNode } from "react";
-import { getFeelings, getEnvs, getLogs } from "./logs.service";
+import { getFeelings, getEnvs, getAll, createOne  } from "./logs.service";
 
 export type Feeling = {
   ID: number,
@@ -25,7 +25,7 @@ interface LogsContextType {
   feelings: Feeling[] | undefined,
   envs: Env[] | undefined,
   logs: Log[] | undefined,
-  retrieveLogs: any,
+  addLog: (log: any | undefined) => void,
   error: any
 };
 
@@ -33,7 +33,7 @@ export const LogsContext = createContext<LogsContextType>({
   feelings: undefined, 
   envs: undefined,
   logs: undefined,
-  retrieveLogs: () => null,
+  addLog: () => null,
   error: null 
 });
 
@@ -44,14 +44,25 @@ export const LogsContextProvider = ({ children }: { children: ReactNode }) => {
   const [error, setError] = useState(null);
 
   const retrieveLogs = () => {
-    getLogs()
+    getAll()
       .then((results) => {
         setLogs(results);
       })
       .catch((err) => {
         setError(err);
       });
-  }
+  };
+
+  const addLog = (log: { feeling: number, environment: number}) => {
+    createOne(log)
+      .then(() => {
+        getAll()
+          .then((results) => {
+            setLogs(results);
+          })
+      })
+      .catch((err) => { console.log(err) });
+  };
 
   useEffect(() => {
     getFeelings()
@@ -79,7 +90,7 @@ export const LogsContextProvider = ({ children }: { children: ReactNode }) => {
         feelings,
         envs,
         logs,
-        retrieveLogs,
+        addLog,
         error
       }}
     >

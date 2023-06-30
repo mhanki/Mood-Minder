@@ -1,13 +1,12 @@
 import { useContext, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { ActivityIndicator, Button } from 'react-native-paper';
+import { ActivityIndicator } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LogsContext } from '../../../services/logs/logs.context';
 import { SafeArea } from "../../../components/SafeArea";
 import { Text } from "../../../components/Text";
 import { ChoiceCard } from '../components/ChoiceCard';
 import { CardsContainer, LogButton } from './MoodLogScreen.styles';
-import { addLog } from '../../../services/logs/logs.service';
 
 const ICON: { [key: string]: keyof typeof MaterialCommunityIcons.glyphMap; } = {
   "at work": "laptop",
@@ -21,7 +20,7 @@ const ICON: { [key: string]: keyof typeof MaterialCommunityIcons.glyphMap; } = {
 };
 
 export const EnvLogScreen = ({ navigation, route }: any) => {
-  const { envs } = useContext(LogsContext);
+  const { envs, addLog } = useContext(LogsContext);
   const [selected, setSelected] = useState(0);
 
   if (!envs) {
