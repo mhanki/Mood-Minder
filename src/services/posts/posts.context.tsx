@@ -82,8 +82,11 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
  
   useEffect(() => {
     retrievePosts();
-    setDisplayedPost(posts[posts.length - 1]);
   }, []);
+
+  useEffect(() => {
+    setDisplayedPost(posts[posts.length - 1]);
+  }, [posts]);
 
   return (
     <PostsContext.Provider

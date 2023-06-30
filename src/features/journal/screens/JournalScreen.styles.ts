@@ -21,6 +21,7 @@ export const TitleContainer = styled.View`
 
 export const PostDisplayCard = styled(Card)`
   height: 420px;
+  background-color: ${({theme}) => theme.colors.bg.lighter};
 `;
 
 export const PostContainer = styled.ScrollView`

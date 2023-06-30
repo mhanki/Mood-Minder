@@ -17,7 +17,11 @@ export const JournalScreen = ({ navigation }:  { navigation: any }) => {
   const { posts, displayedPost, browsePosts } = useContext(PostsContext);
 
   if(!posts || !displayedPost) {
-    return <ActivityIndicator />
+    return (
+      <PaddedSafeArea>
+        <ActivityIndicator/>
+      </PaddedSafeArea>
+    )
   };
 
   const getIcon = (): keyof typeof Ionicons.glyphMap => displayedPost.isPrivate ? 'lock-closed-outline' : 'lock-open-outline'
@@ -41,6 +45,7 @@ export const JournalScreen = ({ navigation }:  { navigation: any }) => {
             <Ionicons 
               name={getIcon()}
               size={15}
+              color={"white"}
             />
             <Text variant="caption" style={{ marginLeft: 10 }}>
               {formatDate(displayedPost.createdAt, { hour: '2-digit', minute: '2-digit' })}
@@ -53,7 +58,8 @@ export const JournalScreen = ({ navigation }:  { navigation: any }) => {
               <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons 
                   name={"create-outline"} 
-                  size={15} 
+                  size={15}
+                  color={"white"}
                 />
                 <Text>Edit</Text>
               </View>
