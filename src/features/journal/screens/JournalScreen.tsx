@@ -12,6 +12,8 @@ import { ActivityIndicator, Button } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import { PostsContext } from '../../../services/posts/posts.context';
 import { formatDate } from '../../../utils/helpers';
+import { colors } from '../../../theme/colors';
+
 
 export const JournalScreen = ({ navigation }:  { navigation: any }) => {
   const { posts, displayedPost, browsePosts } = useContext(PostsContext);
@@ -30,13 +32,13 @@ export const JournalScreen = ({ navigation }:  { navigation: any }) => {
     <PaddedSafeArea>
       <TitleContainer>
         <Button onPress={() => browsePosts("prev")}>
-          <Ionicons name={"chevron-back-outline"} size={25}/>
+          <Ionicons name={"chevron-back-outline"} size={25} color={colors.bg.secondary}/>
         </Button>
         <Text variant="title">
           {formatDate(displayedPost.createdAt, { weekday: "short", month: "short", day: "2-digit", year: "numeric" })}
         </Text>
         <Button onPress={() => browsePosts("next")}>
-          <Ionicons name={"chevron-forward-outline"} size={25}/>
+          <Ionicons name={"chevron-forward-outline"} size={25} color={colors.bg.secondary}/>
         </Button>
       </TitleContainer>
       <PostDisplayCard>
@@ -73,6 +75,8 @@ export const JournalScreen = ({ navigation }:  { navigation: any }) => {
         mode={'contained'} 
         style={{ marginTop: 20 }}
         onPress={() => navigation.navigate("Post Form")}
+        buttonColor={colors.bg.secondary}
+        textColor={"black"}
       >
         New Entry
       </Button>

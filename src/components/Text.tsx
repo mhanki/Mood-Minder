@@ -14,11 +14,13 @@ const body = (theme: DefaultTheme) => `
 `;
 
 const title = (theme: DefaultTheme) => `
+  font-family: ${theme.fonts.heading};
   font-size: ${theme.fontSizes.title};
 `;
 
 const heading = (theme: DefaultTheme) => `
-  font-size: ${theme.fontSizes.h5};
+  font-family: ${theme.fonts.heading};
+  font-size: ${theme.fontSizes.h4};
 `;
 
 const error = (theme: DefaultTheme) => `
@@ -27,7 +29,7 @@ const error = (theme: DefaultTheme) => `
 
 const caption = (theme: DefaultTheme) => `
   font-size: ${theme.fontSizes.caption};
-  font-weight: ${theme.fontWeights.bold};
+  color: ${theme.colors.text.lighter};
 `;
 
 const label = (theme: DefaultTheme) => `

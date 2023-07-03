@@ -3,6 +3,7 @@ import { LineChart } from 'react-native-chart-kit';
 import styled from 'styled-components/native';
 import { Log } from '../../../services/logs/logs.context';
 import { Feeling } from '../../../services/logs/logs.context';
+import { colors } from "../../../theme/colors";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -62,7 +63,7 @@ export const MoodGraph = ({ logs, feelings }: { logs: Log[], feelings: Feeling[]
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     strokeWidth: 2, // optional, default 3
     barPercentage: 0.5,
-    fillShadowGradient:'skyblue',
+    fillShadowGradient: colors.bg.secondary,
     fillShadowGradientOpacity:1
   };
 

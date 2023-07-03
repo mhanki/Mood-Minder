@@ -34,7 +34,7 @@ export const EnvLogScreen = ({ navigation, route }: any) => {
   return (
     <SafeArea>
       <Text variant='heading' style={{ textAlign: 'center' }}>Where are you?</Text>
-      <Text style={{ textAlign: 'center', marginBottom: 16 }}>Select one of the below</Text>
+      <Text variant="caption" style={{ textAlign: 'center', marginBottom: 16 }}>Select one of the below</Text>
       <ScrollView>
         <CardsContainer>
           {envs.map((env) =>
@@ -60,6 +60,7 @@ export const EnvLogScreen = ({ navigation, route }: any) => {
           addLog(log);
           navigation.navigate("Home");
         }}
+        textColor='black'
       >
         Log It
       </LogButton>

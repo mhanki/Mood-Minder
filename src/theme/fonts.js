@@ -1,6 +1,6 @@
 export const fonts = {
   body: "",
-  heading: "",
+  heading: "Lora_400Regular",
   monospace: "",
 };
 
@@ -11,7 +11,7 @@ export const fontWeights = {
 };
 
 export const fontSizes = {
-  caption: "12px",
+  caption: "14px",
   label: "14px",
   body: "16px",
   title: "20px",

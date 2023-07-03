@@ -34,8 +34,8 @@ export const MoodLogScreen = ({ navigation }: { navigation: any }) => {
 
   return (
     <SafeArea>
-      <Text variant='heading' style={{ textAlign: 'center' }}>How are you feeling?</Text>
-      <Text style={{ textAlign: 'center', marginBottom: 16 }}>Select one of the below</Text>
+      <Text variant='heading' style={{ textAlign: 'center' }}>How do you feel?</Text>
+      <Text variant='caption' style={{ textAlign: 'center', marginBottom: 16 }}>Select one of the below</Text>
       <ScrollView>
         <CardsContainer>
           {feelings.sort((a, b) => b.ID - a.ID).map((feeling) =>
@@ -53,6 +53,7 @@ export const MoodLogScreen = ({ navigation }: { navigation: any }) => {
       <LogButton
         mode='contained'
         onPress={() => { navigation.navigate("Env", { feeling: selected }) }}
+        textColor='black'
       >
         Next
       </LogButton>

@@ -29,6 +29,7 @@ export const PostForm = ({ navigation } :  { navigation: any }) => {
         style={{ paddingHorizontal: 16, paddingVertical: 0, justifyContent: 'flex-start'}}
         labelStyle={{ flexShrink: 0, flexGrow: 0, color: 'white' }}
         position='leading'
+        color={colors.bg.secondary}
       />
       <Button
         mode={'contained'} 
@@ -37,6 +38,8 @@ export const PostForm = ({ navigation } :  { navigation: any }) => {
           addPost({ content: text, isPrivate }) 
           navigation.navigate("Post Display")
         }}
+        buttonColor={colors.bg.secondary}
+        textColor={"black"}
       >
         Add Post
       </Button>

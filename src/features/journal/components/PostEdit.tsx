@@ -49,6 +49,7 @@ const PostEditContainer = styled.View`
         style={{ paddingHorizontal: 10, paddingVertical: 10, justifyContent: 'flex-start'}}
         labelStyle={{ flexShrink: 0, flexGrow: 0, color: "white" }}
         position='leading'
+        color={colors.bg.secondary}
       />
       <Button
         mode={'contained'} 
@@ -56,6 +57,8 @@ const PostEditContainer = styled.View`
           updatePost({ID: post.ID, isPrivate, content: text});
           navigation.navigate("Post Display")
         }}
+        buttonColor={colors.bg.secondary}
+        textColor={"black"}
       >
         Update Post
       </Button>

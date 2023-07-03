@@ -25,17 +25,19 @@ interface ChoiceCardProps {
 };
 
 export const ChoiceCard = ({id, text, select, selected, iconName}: ChoiceCardProps) => {
-  const textColor = selected === id ? colors.ui.primary : "white";
+  const cardColors = selected === id 
+    ? { text: "black", bg: "white" }
+    : { text: "white", bg: colors.bg.lighter };
 
   return (
     <TouchableOpacity onPress={() => select(id)}>
-      <ChoiceContainer>
+      <ChoiceContainer style={{ backgroundColor: cardColors.bg }}>
         <MaterialCommunityIcons 
           name={iconName} 
-          color={textColor}
+          color={cardColors.text}
           size={30}
         />
-        <Text style={{ textAlign: "center", color: textColor }}>{text}</Text>
+        <Text style={{ textAlign: "center", color: cardColors.text }}>{text}</Text>
       </ChoiceContainer>
     </TouchableOpacity>
   )

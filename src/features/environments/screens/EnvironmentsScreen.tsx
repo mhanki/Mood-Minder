@@ -91,8 +91,7 @@ export const EnvironmentsScreen = () => {
 
   return (
     <SafeArea>
-      <Text variant='heading' style={{ textAlign: 'center'}}>Where you are!</Text>
-      <Text variant='heading' style={{ textAlign: 'center', marginBottom: 15 }}>when you are feeling</Text>
+      <Text variant='heading' style={{ textAlign: 'center', marginBottom: 15 }}>Where you are when you are feeling</Text>
 
       <SegmentedButtons
         value={mood}
@@ -108,8 +107,8 @@ export const EnvironmentsScreen = () => {
           }
         ]}
         theme={{ colors: { 
-          secondaryContainer: colors.bg.lighter,
-          onSecondaryContainer: "white",
+          secondaryContainer: colors.bg.secondary,
+          onSecondaryContainer: "black",
           onSurface: "white"
         }}}
         style={{ width: 200, alignSelf: "center" }}

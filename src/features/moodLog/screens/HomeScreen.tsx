@@ -3,12 +3,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { Header, NavOptionsContainer, Card } from './HomeScreen.styles';
 import { SafeArea } from "../../../components/SafeArea";
 import { Text } from "../../../components/Text";
+import { colors } from '../../../theme/colors';
 
 export const HomeScreen = ({ navigation }: any) => {
   return (
     <SafeArea>
       <Header>
-        <Text variant="heading">Hello Emma,</Text>
+        <Text variant="heading">Hello <Text variant="heading" style={{ color: colors.bg.secondary }}>Emma</Text>,</Text>
         <Text variant="title">What do you want to do?</Text>
       </Header>
       <NavOptionsContainer>
