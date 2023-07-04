@@ -34,6 +34,10 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
     getPosts()
       .then((results) => {
         setPosts(results);
+        return results;
+      })
+      .then((posts) => {
+        setDisplayedPost(posts[posts.length - 1]);
       })
       .catch((err) => {
         console.log(err);
@@ -67,15 +71,14 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
   const updatePost = (post: { ID: number, content: string, isPrivate: boolean }) => {
     updateOne(post)
       .then(() => {
-        retrievePosts();
-
-        const updated: Post = {
-          ...displayedPost!, 
-          content: post.content, 
-          isPrivate: post.isPrivate
-        };
-
-        setDisplayedPost(updated);
+        getPosts()
+          .then((results) => {
+            setDisplayedPost(results.find((post: Post) => post.ID === displayedPost!.ID));
+            setPosts(results);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => { console.log(err) });
   };
@@ -83,10 +86,6 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     retrievePosts();
   }, []);
-
-  useEffect(() => {
-    setDisplayedPost(posts[posts.length - 1]);
-  }, [posts]);
 
   return (
     <PostsContext.Provider
