@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Header = styled.View`
+  flex-direction: row;
 `;
 
 export const NavOptionsContainer = styled.View`

@@ -1,21 +1,53 @@
-function addBearer(options: any) {
+import { API_URL } from '../../../env';
+import * as SecureStore from 'expo-secure-store';
+
+type User = {
+  name: string,
+  username: string,
+  email: string,
+  password: string
+};
+
+async function addBearer(options: any) {
   const updatedOptions = { ...options };
 
-  /* if(localStorage.jwt) {
-    updatedOptions.headers = {
-      ...updatedOptions.headers,
-      Authorization: `Bearer ${localStorage.jwt}`,
-    };
-  } */
+  const token = await SecureStore.getItemAsync('jwt');
 
   updatedOptions.headers = {
     ...updatedOptions.headers,
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmUuZG9lQGdtYWlsLmNvbSIsImlkIjoxNywiaWF0IjoxNjg0MzIzNzkxfQ.WZzNVwRuBp9aMTL3yUU5mQPKhGG78ED1euIqY4nqmvg`,
+    Authorization: `Bearer ${token}`,
   };
 
   return updatedOptions;
 };
 
-export function fetchWithBearer(url: string, options = {}) {
-  return fetch(url, addBearer(options));
+export async function fetchWithBearer(url: string, options = {}) {
+  const bearer = await addBearer(options);
+  return fetch(url, bearer);
+};
+
+export function loginRequest(email: string, password: string) {
+  return (
+    fetch(`${API_URL}/auth`, { 
+      method: "POST", 
+      body: JSON.stringify({
+        email, password
+      }),
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then((res) => res.json())
+  );
+};
+
+export function registrationRequest({name, username, email, password}: User) {
+  return (
+    fetch(`${API_URL}/users`, { 
+      method: "POST", 
+      body: JSON.stringify({
+        name, username, email, password
+      }),
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then(() => loginRequest(email, password))
+  );
 };

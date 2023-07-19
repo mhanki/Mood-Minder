@@ -5,6 +5,7 @@ import { theme } from "./src/theme";
 import { Navigation } from "./src/navigation";
 import { useFonts } from 'expo-font';
 import { Lora_400Regular } from '@expo-google-fonts/lora';
+import { AuthenticationContextProvider } from "./src/services/auth/auth.context";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,7 +20,9 @@ export default function App() {
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <ThemeProvider theme={theme}>
-          <Navigation />
+          <AuthenticationContextProvider>
+            <Navigation />
+          </AuthenticationContextProvider>
         </ThemeProvider>
       </GestureHandlerRootView>
     </SafeAreaProvider>

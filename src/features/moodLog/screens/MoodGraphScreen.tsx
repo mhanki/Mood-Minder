@@ -16,7 +16,10 @@ export const MoodGraphScreen = () => {
     <SafeArea>
       <Text variant="heading" style={{ marginBottom: 16 }}>Everything Changes</Text>
       <Text>Lorem ipsum dolor sit amet consectetur. Et quis vestibulum id quam diam mauris. Sit sit porttitor blandit ac donec sit. Id ut bibendum molestie ipsum id erat duis. Suspendisse quam enim justo morbi et. Dictum odio amet vestibulum ipsum velit eu. Amet dignissim proin erat sed. Ac est pellentesque molestie morbi quam nunc habitasse.</Text>
-      <MoodGraph logs={logs} feelings={feelings} />
+      { logs.length < 2 
+        ? <Text style={{ marginTop: 50 }}>You haven't logged enough data yet</Text>
+        : <MoodGraph logs={logs} feelings={feelings} />
+      }
     </SafeArea>
   );
 };
