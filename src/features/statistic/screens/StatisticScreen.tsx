@@ -6,7 +6,7 @@ import { LogsContext, Log } from '../../../services/logs/logs.context';
 import { colors } from '../../../theme/colors';
 import { EnvChart } from '../components/EnvChart';
 
-export const EnvironmentsScreen = () => {
+export const StatisticScreen = () => {
   const { logs, envs } = useContext(LogsContext);
   const [mood, setMood] = useState('good');
 

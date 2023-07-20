@@ -12,7 +12,7 @@ const PostEditContainer = styled.View`
   background-color: ${({theme}) => theme.colors.bg.primary};
 `;
 
- export const PostEdit = ({route, navigation}: {route: any, navigation: any}) => {
+ export const JournalEdit = ({route, navigation}: {route: any, navigation: any}) => {
   const { post } = route.params;
   const [text, setText] = useState(post.content);
   const [isPrivate, setIsPrivate] = useState(post.isPrivate);

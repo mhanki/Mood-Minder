@@ -5,14 +5,14 @@ import {
 } from "@react-navigation/stack";
 import { useContext } from "react";
 import { PostsContext } from "../services/posts/posts.context";
-import { PostForm } from "../features/journal/components/PostForm";
+import { JournalForm } from "../features/journal/components/JournalForm";
 import { JournalScreen } from "../features/journal/screens/JournalScreen";
-import { PostEdit } from "../features/journal/components/PostEdit";
+import { JournalEdit } from "../features/journal/components/JournalEdit";
 
 
 const PostsStack = createStackNavigator();
 
-export const PostsNavigator = () => {
+export const JournalNavigator = () => {
   const { posts } = useContext(PostsContext);
 
   return (
@@ -21,19 +21,19 @@ export const PostsNavigator = () => {
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
-      initialRouteName={posts?.length === 0 ? 'Post Form' : 'Post Display'}
+      initialRouteName={posts?.length === 0 ? 'Journal Form' : 'Journal Display'}
     >
       <PostsStack.Screen
-        name="Post Display"
+        name="Journal Display"
         component={JournalScreen}
       />
       <PostsStack.Screen
-        name="Post Form"
-        component={PostForm}
+        name="Journal Form"
+        component={JournalForm}
       />
       <PostsStack.Screen
-        name="Post Edit"
-        component={PostEdit}
+        name="Journal Edit"
+        component={JournalEdit}
         options={{ ...TransitionPresets.ModalPresentationIOS }}
       />
     </PostsStack.Navigator>

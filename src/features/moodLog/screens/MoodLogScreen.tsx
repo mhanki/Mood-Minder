@@ -6,7 +6,7 @@ import { LogsContext } from '../../../services/logs/logs.context';
 import { SafeArea } from "../../../components/SafeArea";
 import { Text } from "../../../components/Text";
 import { ChoiceCard } from '../components/ChoiceCard';
-import { CardsContainer, LogButton } from './MoodLogScreen.styles';
+import { CardsContainer, LogButton } from '../components/MoodLogScreen.styles';
 
 const getEmoticon = (id: number): keyof typeof MaterialCommunityIcons.glyphMap => {
   if (id < 5) {

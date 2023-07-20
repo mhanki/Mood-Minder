@@ -2,12 +2,12 @@ import { StatusBar } from 'react-native';
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
 import { LogsContextProvider } from '../services/logs/logs.context';
 import { PostsContextProvider } from '../services/posts/posts.context';
-import { HomeScreen } from "../features/moodLog/screens/HomeScreen";
+import { HomeScreen } from "../features/home/screens/HomeScreen";
 import { MoodLogScreen } from "../features/moodLog/screens/MoodLogScreen";
-import { EnvironmentsScreen } from "../features/environments/screens/EnvironmentsScreen";
+import { StatisticScreen } from "../features/statistic/screens/StatisticScreen";
 import { EnvLogScreen } from "../features/moodLog/screens/EnvLogScreen";
-import { MoodGraphScreen } from "../features/moodLog/screens/MoodGraphScreen";
-import { PostsNavigator } from "./PostsNavigator";
+import { MoodGraphScreen } from "../features/moodGraph/screens/MoodGraphScreen";
+import { JournalNavigator } from "./JournalNavigator";
 import { colors } from "../theme/colors";
 
 const Stack = createStackNavigator();
@@ -27,9 +27,9 @@ export const AppNavigator = () => {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Log" component={MoodLogScreen} />
           <Stack.Screen name="Env" component={EnvLogScreen} />
-          <Stack.Screen name="Journal" component={PostsNavigator} />
+          <Stack.Screen name="Journal" component={JournalNavigator} />
           <Stack.Screen name="Graph" component={MoodGraphScreen} />
-          <Stack.Screen name="Environments" component={EnvironmentsScreen} />
+          <Stack.Screen name="Statistic" component={StatisticScreen} />
         </Stack.Navigator>
       </PostsContextProvider>
     </LogsContextProvider>

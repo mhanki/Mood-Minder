@@ -4,7 +4,7 @@ import { SafeArea } from '../../../components/SafeArea';
 import { PostsContext } from '../../../services/posts/posts.context';
 import { colors } from '../../../theme/colors';
 
-export const PostForm = ({ navigation } :  { navigation: any }) => {
+export const JournalForm = ({ navigation } :  { navigation: any }) => {
   const [text, setText] = useState('');
   const [isPrivate, setIsPrivate] = useState(true);
   const { addPost } = useContext(PostsContext);

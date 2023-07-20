@@ -1,6 +1,6 @@
 import { TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Header, NavOptionsContainer, Card } from './HomeScreen.styles';
+import { Header, NavOptionsContainer, Card } from '../components/HomeScreen.styles';
 import { SafeArea } from "../../../components/SafeArea";
 import { Text } from "../../../components/Text";
 import { colors } from '../../../theme/colors';
@@ -65,7 +65,7 @@ export const HomeScreen = ({ navigation }: any) => {
           </Card>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { navigation.navigate("Environments"); }}>
+        <TouchableOpacity onPress={() => { navigation.navigate("Statistic"); }}>
           <Card>
             <Ionicons
               name={"pie-chart-outline"}

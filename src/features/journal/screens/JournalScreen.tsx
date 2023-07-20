@@ -5,7 +5,7 @@ import {
   TitleContainer, 
   PostDisplayCard, 
   PostContainer 
-} from './JournalScreen.styles';
+} from '../components/JournalScreen.styles';
 import { Text } from '../../../components/Text';
 import { TouchableOpacity, View } from 'react-native';
 import { ActivityIndicator, Button } from 'react-native-paper';
@@ -55,7 +55,7 @@ export const JournalScreen = ({ navigation }:  { navigation: any }) => {
             </Text>
             <TouchableOpacity 
               style={{ marginLeft: 'auto' }}
-              onPress={() => navigation.navigate("Post Edit", {post: displayedPost})}
+              onPress={() => navigation.navigate("Journal Edit", {post: displayedPost})}
             >
               <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons 
@@ -74,7 +74,7 @@ export const JournalScreen = ({ navigation }:  { navigation: any }) => {
       <Button 
         mode={'contained'} 
         style={{ marginTop: 20 }}
-        onPress={() => navigation.navigate("Post Form")}
+        onPress={() => navigation.navigate("Journal Form")}
         buttonColor={colors.bg.secondary}
         textColor={"black"}
       >
