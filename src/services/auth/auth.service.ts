@@ -28,26 +28,32 @@ export async function fetchWithBearer(url: string, options = {}) {
 
 export function loginRequest(email: string, password: string) {
   return (
-    fetch(`${API_URL}/auth`, { 
-      method: "POST", 
+    fetch(`${API_URL}/auth`, {
+      method: "POST",
       body: JSON.stringify({
         email, password
       }),
-      headers: {'Content-Type': 'application/json'}
+      headers: { 'Content-Type': 'application/json' }
     })
-    .then((res) => res.json())
+      .then((res) => res.json())
+      .catch((err) => console.log(err))
   );
 };
 
-export function registrationRequest({name, username, email, password}: User) {
+export function registrationRequest({ name, username, email, password }: User) {
   return (
-    fetch(`${API_URL}/users`, { 
-      method: "POST", 
+    fetch(`${API_URL}/users`, {
+      method: "POST",
       body: JSON.stringify({
         name, username, email, password
       }),
-      headers: {'Content-Type': 'application/json'}
+      headers: { 'Content-Type': 'application/json' }
     })
-    .then(() => loginRequest(email, password))
+      .then(() => loginRequest(email, password))
   );
 };
+
+export function getUser() {
+  return fetchWithBearer(`${API_URL}/users`)
+    .then((res) => res.json());
+}

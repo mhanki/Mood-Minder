@@ -7,7 +7,7 @@ import { AuthenticationContext } from '../services/auth/auth.context';
 import { SafeArea } from '../components/SafeArea';
 
 export const Navigation = () => {
-  const { user, isLoading } = useContext(AuthenticationContext);
+  const { token, isLoading } = useContext(AuthenticationContext);
 
   if(isLoading) {
     return(
@@ -19,7 +19,7 @@ export const Navigation = () => {
 
   return (
     <NavigationContainer>
-      { user ? <AppNavigator /> : <AccountNavigator /> }
+      { token ? <AppNavigator /> : <AccountNavigator /> }
     </NavigationContainer>
   );
 };

@@ -1,8 +1,9 @@
 import { ReactNode, createContext, useEffect, useState } from 'react';
-import { loginRequest, registrationRequest } from "./auth.service";
+import { loginRequest, registrationRequest, getUser } from "./auth.service";
 import * as SecureStore from 'expo-secure-store';
 
 type User = {
+  ID?: string,
   name: string,
   username: string,
   email: string,
@@ -10,7 +11,8 @@ type User = {
 };
 
 interface AuthContextType {
-  user: null | string,
+  token: null | string,
+  username: null | string,
   isLoading: boolean,
   error: any,
   onLogin: (email: string, password: string) => void,
@@ -19,7 +21,8 @@ interface AuthContextType {
 };
 
 export const AuthenticationContext = createContext<AuthContextType>({
-  user: null,
+  token: null,
+  username: null,
   isLoading: true,
   error: null,
   onLogin: () => null,
@@ -28,23 +31,45 @@ export const AuthenticationContext = createContext<AuthContextType>({
 });
 
 export const AuthenticationContextProvider = ({ children }: any) => {
-  const [user, setUser] = useState<null | string>(null);
+  const [token, setToken] = useState<null | string>(null);
+  const [username, setUsername] = useState<null | string>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     SecureStore.getItemAsync('jwt')
-      .then((data: string| null) => {
-        setUser(data);
-        setIsLoading(false);
-      });
+      .then((token: string | null) => {
+        if (token) {
+          getUser()
+            .then(({ user }: { user: User }) => {
+              setUsername(user.name);
+            })
+            .then(() => {
+              setToken(token);
+              setIsLoading(false);
+            });
+        }
+      })
+      .catch(error => console.log(error))
   }, [])
+
+  useEffect(() => {
+    if (token) {
+      setIsLoading(true);
+      getUser()
+        .then(({ user }: { user: User }) => {
+          setUsername(user.name);
+        })
+        .then(() => setIsLoading(false))
+        .catch(err => console.log(err));
+    }
+  }, [token]);
 
   const onLogin = (email: string, password: string) => {
     loginRequest(email, password)
       .then((data) => {
         SecureStore.setItemAsync('jwt', data.token);
-        setUser(data.token);
+        setToken(data.token);
       });
   };
 
@@ -52,19 +77,20 @@ export const AuthenticationContextProvider = ({ children }: any) => {
     registrationRequest(user)
       .then((data) => {
         SecureStore.setItemAsync('jwt', data.token);
-        setUser(data.token);
+        setToken(data.token);
       });
   };
 
   const onLogout = () => {
     SecureStore.deleteItemAsync('jwt');
-    setUser(null);
+    setToken(null);
   };
 
   return (
     <AuthenticationContext.Provider
       value={{
-        user,
+        token,
+        username,
         isLoading,
         error,
         onLogin,
