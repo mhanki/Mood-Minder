@@ -12,18 +12,21 @@
 
 ## About the App
 
-Mood Minder is a mobile micro-journal app based on Cognitive Behavioural Therapy. Quickly and effortlessly track your moods and thoughts throughout the day to become more mindful. Check in on your progress to see that nothing lasts forever, and every ebb will also turn around again. Discover patterns of where you are when you are feeling your best or worst to help uncover where challenges may lie.
+Mood Minder is a mobile micro-journal and mood tracker app designed to enhance your mindfulness journey through the principles of Cognitive Behavioural Therapy (CBT). Effortlessly track your moods and thoughts throughout the day to help you better understand and navigate your emotional landscape.  
+  
+Cultivate mindfulness as you gain valuable insights into your fluctuating moods. By effortlessly documenting your emotional shifts, you'll begin to recognize that nothing lasts forever, and even the darkest moments will eventually give way to positivity and growth. Uncover the hidden patterns that influence your emotional well-being and identify the contexts in which you thrive, and those that challenge you, empowering you to address and overcome obstacles with more self-awareness.
+
 
 ## Features
 
-- Mood Log
-- Journal
-- Mood Graph
-- Environemnt Statistics
+- **Instant Mood Log**: Effortlessly record your moods with a simple tap, allowing you to capture the essence of each moment quickly and effectively.
+- **Mini Journal**: Expand on your emotions, or jot down anything that is on your mind wherever you are.
+- **Reflective Check-Ins**: See the ever-shifting ups and downs of life and monitor your personal growth and journey towards emotional balance through it all.
+- **Mindful Insights**: Gain a better understanding of the connections between your thoughts, moods, and external influences by seeing where you are when you are feeling good or bad.
 
 ## Demo
 
-<img height="350px" src="./assets/mood-minder.gif" />
+<img height="500px" src="./assets/mood-minder.gif" />
 
 ## Technical
 
