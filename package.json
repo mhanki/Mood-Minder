@@ -18,6 +18,7 @@
     "@types/react": "~18.0.27",
     "@types/styled-components": "^5.1.26",
     "@types/styled-components-react-native": "^5.2.1",
+    "camelize-ts": "^3.0.0",
     "expo": "~48.0.15",
     "expo-font": "~11.1.1",
     "expo-secure-store": "~12.1.1",
