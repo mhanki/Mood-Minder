@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { loginRequest, registrationRequest, getUser } from "./auth.service";
 import * as SecureStore from 'expo-secure-store';
 
@@ -40,14 +40,9 @@ export const AuthenticationContextProvider = ({ children }: any) => {
     SecureStore.getItemAsync('jwt')
       .then((token: string | null) => {
         if (token) {
-          getUser()
-            .then(({ user }: { user: User }) => {
-              setUsername(user.name);
-            })
-            .then(() => {
-              setToken(token);
-              setIsLoading(false);
-            });
+          setToken(token);
+        } else {
+            setIsLoading(false);
         }
       })
       .catch(error => console.log(error))

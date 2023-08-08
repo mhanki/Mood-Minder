@@ -8,7 +8,7 @@ import { SafeArea } from "../../../components/SafeArea";
 export const MainScreen = ({navigation}: any) => {
   return (
     <SafeArea>
-      <Text variant="heading">Mental</Text>
+      <Text variant="heading">Mood Minder</Text>
       <AccountContainer>
         <AccountButton
           icon="lock-open-outline"

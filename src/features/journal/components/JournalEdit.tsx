@@ -55,7 +55,7 @@ const PostEditContainer = styled.View`
         mode={'contained'} 
         onPress={() => { 
           updatePost({ID: post.ID, isPrivate, content: text});
-          navigation.navigate("Post Display")
+          navigation.navigate("Journal Display")
         }}
         buttonColor={colors.bg.secondary}
         textColor={"black"}

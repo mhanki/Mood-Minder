@@ -36,7 +36,7 @@ export const JournalForm = ({ navigation } :  { navigation: any }) => {
         style={{ marginTop: 10 }}
         onPress={() => { 
           addPost({ content: text, isPrivate }) 
-          navigation.navigate("Post Display")
+          navigation.navigate("Journal Display")
         }}
         buttonColor={colors.bg.secondary}
         textColor={"black"}
