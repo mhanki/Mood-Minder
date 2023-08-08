@@ -14,7 +14,7 @@
 
 Mood Minder is a mobile micro-journal and mood tracker app designed to enhance your mindfulness journey through the principles of Cognitive Behavioural Therapy (CBT). Effortlessly track your moods and thoughts throughout the day to help you better understand and navigate your emotional landscape.  
   
-Cultivate mindfulness as you gain valuable insights into your fluctuating moods. By effortlessly documenting your emotional shifts, you'll begin to recognize that nothing lasts forever, and even the darkest moments will eventually give way to positivity and growth. Uncover the hidden patterns that influence your emotional well-being and identify the contexts in which you thrive, and those that challenge you, empowering you to address and overcome obstacles with more self-awareness.
+Cultivate mindfulness as you gain valuable insights into your fluctuating moods. By documenting your emotional shifts, you'll begin to recognize that nothing lasts forever, and even the darkest moments will eventually give way to positivity and growth. Uncover the hidden patterns that influence your emotional well-being and identify the contexts in which you thrive, and those that challenge you, empowering you to address and overcome obstacles with more self-awareness.
 
 
 ## Features
