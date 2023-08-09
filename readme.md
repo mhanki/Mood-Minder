@@ -8,7 +8,7 @@
 - [About the App](#about-the-app)
 - [Technical](#technical)
 - [Contributing](#contributing)
-<!-- - [Licence](#license) -->
+- [Licence](#license)
 
 ## About the App
 
@@ -34,14 +34,21 @@ Cultivate mindfulness as you gain valuable insights into your fluctuating moods.
 
 ![React Native](https://img.shields.io/static/v1?message=React%20Native&logo=React&logoColor=white&label=%20&labelColor=149eca&color=149eca) 
 ![TypeScript](https://img.shields.io/static/v1?message=TypeScript&logo=TypeScript&logoColor=white&label=%20&labelColor=3178C6&color=3178C6)
+![Expo](https://img.shields.io/static/v1?message=Expo&logo=Expo&logoColor=white&label=%20&labelColor=000020&color=000020)
+
+### Development Setup
+
+1. Install and set up the [API server](https://github.com/mhanki/Mood-Minder-API).
+2. Clone the repository: `git clone https://github.com/mhanki/Mood-Minder.git`
+3. Install dependencies: `npm install`.
+4. Start the app with `npm start`.
+5. Open the app on your emulator or phone via [Expo](https://expo.dev/).
 
 
-### Contributing
+## Contributing
 
 Found a **bug** or have a concrete **feature request**? Open a corresponding issue through the [Issues Tab](https://github.com/mhanki/Mood-Minder/issues).
 
-<!-- 
 ## License
 
-* see [LICENSE](https://github.com/YourUserNameHere/ProjectName/LICENSE.md) file
- -->
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
